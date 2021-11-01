@@ -10,6 +10,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring-study01</module>
+        <module>spring-study02</module>
+        <module>poroxy</module>
     </modules>
 
     <properties>
