@@ -7,9 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="poroxy" />
         <module name="spring-study01" />
+        <module name="psring-aop" />
         <module name="spring-study02" />
+        <module name="poroxy" />
       </profile>
     </annotationProcessing>
   </component>

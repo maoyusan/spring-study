@@ -12,6 +12,7 @@
         <module>spring-study01</module>
         <module>spring-study02</module>
         <module>poroxy</module>
+        <module>psring-aop</module>
     </modules>
 
     <properties>
@@ -23,7 +24,15 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.3.9.RELEASE</version>
+            <version>5.3.11</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.7</version>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 </project>
