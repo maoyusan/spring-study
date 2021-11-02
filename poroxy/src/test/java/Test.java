@@ -5,5 +5,8 @@ public class Test {
         MyProxy myProxy = new MyProxy(new Host());
         HostInterFace host = (HostInterFace) myProxy.getClassObject();
         host.a();
+        host.b();
+        host.c();
+        System.out.println(args);
     }
 }
