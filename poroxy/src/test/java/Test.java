@@ -6,6 +6,5 @@ public class Test {
         HostInterFace host = (HostInterFace) myProxy.getClassObject();
         host.a();
         System.out.println();
-        System.out.println();
     }
 }
