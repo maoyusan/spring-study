@@ -9,5 +9,8 @@ public class Test {
         host.c();
         System.out.println(args);
         System.out.println(args);
+        System.out.println(args);
+
+
     }
 }
