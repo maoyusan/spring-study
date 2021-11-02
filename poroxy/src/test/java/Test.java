@@ -8,5 +8,6 @@ public class Test {
         host.b();
         host.c();
         System.out.println(args);
+        System.out.println(args);
     }
 }
