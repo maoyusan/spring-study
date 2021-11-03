@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-/*@Scope("prototype")*/
 public class User {
     @Value("admin")
     private String name;

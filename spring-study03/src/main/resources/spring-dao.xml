@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:app="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/test?characterEncoding=utf8&amp;user=false&amp;serverTimeZoneUTC"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--   定义mybatis工厂  绑定mybatis配置文件-->
+        <property name="dataSource" ref="datasource"/>
+        <property name="typeAliasesPackage" value="pojo"/>
+        <property name="mapperLocations" value="mapper/*Mapper.xml"/>
+    </bean>
+
+
+    <!--    挂在官方写好的类 不用再手写工具类,参数是上面定义好的配置工厂-->
+    <!--    <bean class="org.mybatis.spring.SqlSessionTemplate" id="sessionTemplate">
+            <constructor-arg ref="sqlSessionFactory"/>
+        </bean>-->
+
+
+    <bean class="mapper.UserMapperImpl" id="userMapperImpl">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="sourceTransactionManager">
+        <property name="dataSource" ref="datasource"/>
+    </bean>
+
+ <tx:advice id="interceptor" transaction-manager="sourceTransactionManager">
+     <tx:attributes>
+         <tx:method name="*"/>
+     </tx:attributes>
+ </tx:advice>
+
+    <app:config>
+        <app:pointcut id="txPointCut" expression="execution(* mapper.*.*(..))"/>
+        <app:advisor advice-ref="interceptor" pointcut-ref="txPointCut"/>
+    </app:config>
+
+</beans>
+

@@ -15,9 +15,6 @@ public class Test {
         ApplicationContext context1 = new AnnotationConfigApplicationContext(MyConfig.class);
         User bean = context1.getBean("user",User.class);
         System.out.println(bean);
-        System.out.println(user == bean);
-
-        
 
     }
 
