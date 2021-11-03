@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <bean id="userServiceImpl" class="service.UserServiceImpl"/>
+    <bean id="logAfter" class="log.LogAfter"/>
+    <bean id="logBefore" class="log.LogBefore"/>
+    <bean id="log" class="log.Log"/>
+    <bean id="log2" class="log.Log2"/>
+
+<!--    <aop:aspectj-autoproxy/>-->
+
+<!--    <aop:config>
+&lt;!&ndash;        修饰词 包名 方法名 参数&ndash;&gt;
+        <aop:pointcut id="pointcut" expression="execution(* service.UserServiceImpl.*(..))"/>
+
+        <aop:advisor advice-ref="logAfter" pointcut-ref="pointcut"/>
+        <aop:advisor advice-ref="logBefore" pointcut-ref="pointcut"/>
+
+    </aop:config>
+
+    <context:component-scan base-package="pojo"/>
+    <context:annotation-config/>-->
+    <aop:config>
+        <aop:aspect ref="log2">
+        <aop:pointcut id="point" expression="execution(* service.UserServiceImpl.*(..))"/>
+            <aop:before method="before" pointcut-ref="point"/>
+            <aop:after method="before" pointcut-ref="point"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
